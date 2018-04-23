@@ -80,6 +80,7 @@ $(function() {
 
 
 	describe('Initial Entries', function() {
+
 		const container = document.querySelector('.feed');
 
 		 beforeEach(function(done) {
@@ -99,10 +100,30 @@ $(function() {
 	});
 
 
-	/* TODO: Write a new test suite named "New Feed Selection" */
+	describe('New Feed Selection', function() {
 
-		/* TODO: Write a test that ensures when a new feed is loaded
+		const headerTitle = document.querySelector('.header-title');
+		let headerTitleA = undefined;
+		let headerTitleB = undefined;
+
+		beforeAll(function(done) {
+			loadFeed(0, function() {
+				headerTitleA = headerTitle.innerText;
+				done();
+			});
+
+			loadFeed(1, function() {
+				headerTitleB = headerTitle.innerText;
+				done();
+			});
+		});
+
+		/* A test that ensures when a new feed is loaded
 		 * by the loadFeed function that the content actually changes.
-		 * Remember, loadFeed() is asynchronous.
 		 */
+		 it('is loaded, content changes', function(done) {
+			 expect(headerTitleA).not.toEqual(headerTitleB);
+			 done();
+		 });
+	});
 }());
