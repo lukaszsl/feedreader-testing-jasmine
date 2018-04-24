@@ -95,7 +95,7 @@ $(function() {
 			*/
 		 it('exist', function(done) {
 			 const entry = document.querySelectorAll('.feed .entry');
-			 
+
 			 expect(entry.length).toBeGreaterThan(0);
 			 done();
 		 });
@@ -104,19 +104,18 @@ $(function() {
 
 	describe('New Feed Selection', function() {
 
-		const headerTitle = document.querySelector('.header-title');
-		let headerTitleA = undefined;
-		let headerTitleB = undefined;
+		const feed = document.querySelector('.feed');
+		let feed0 = undefined;
+		let feed1 = undefined;
 
-		beforeAll(function(done) {
+		beforeEach(function(done) {
 			loadFeed(0, function() {
-				headerTitleA = headerTitle.innerText;
-				done();
-			});
+				feed0 = feed.innerText;
 
-			loadFeed(1, function() {
-				headerTitleB = headerTitle.innerText;
-				done();
+				loadFeed(1, function() {
+					feed1 = feed.innerText;
+					done();
+				});
 			});
 		});
 
@@ -124,7 +123,7 @@ $(function() {
 		 * by the loadFeed function that the content actually changes.
 		 */
 		 it('is loaded, content changes', function(done) {
-			 expect(headerTitleA).not.toEqual(headerTitleB);
+			 expect(feed0).not.toEqual(feed1);
 			 done();
 		 });
 	});
