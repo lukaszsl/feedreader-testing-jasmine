@@ -94,7 +94,9 @@ $(function() {
 			* a single .entry element within the .feed container.
 			*/
 		 it('exist', function(done) {
-			 expect(container.firstElementChild).toBeDefined();
+			 const entry = document.querySelectorAll('.feed .entry');
+			 
+			 expect(entry.length).toBeGreaterThan(0);
 			 done();
 		 });
 	});
